@@ -13,7 +13,7 @@ public class maquina_estado : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Activarestado(EstadoInicial);
     }
 
     // Update is called once per frame
@@ -21,8 +21,11 @@ public class maquina_estado : MonoBehaviour
     {
         
     }
-    public void NuevoEstado(MonoBehaviour nuevoestado)
+    public void Activarestado(MonoBehaviour nuevoestado)
     {
+        if(EstadoActual!=null) EstadoActual.enabled = false;
+        EstadoActual = nuevoestado;
+        EstadoActual.enabled = true;
 
     }
 }
