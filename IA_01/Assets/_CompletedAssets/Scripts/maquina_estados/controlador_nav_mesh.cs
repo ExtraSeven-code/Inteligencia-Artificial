@@ -21,10 +21,12 @@ public class controlador_nav_mesh : MonoBehaviour
         navmeshagent.destination = puntoDestino;
         navmeshagent.Resume();
     }
+
     public void ActualizarPuntoDestinoNavMesh()
     {
         ActualizarPuntoDestinoNavMesh(perseguirObjetivo.position);
     }
+
     public void DetenerNavMeshAgent()
     {
         navmeshagent.Stop();

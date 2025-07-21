@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class maquina_estado : MonoBehaviour
 {
-    [SerializeField] private MonoBehaviour EstadoPatrulla;
-    [SerializeField] private MonoBehaviour EstadoAlerta;
-    [SerializeField] private MonoBehaviour EstadoPersecucion;
-    [SerializeField] private MonoBehaviour EstadoInicial;
+    public MonoBehaviour EstadoPatrulla;
+    public MonoBehaviour EstadoAlerta;
+    public MonoBehaviour EstadoPersecucion;
+    public MonoBehaviour EstadoInicial;
+
+    public MeshRenderer meshrenderindicador;
 
     private MonoBehaviour EstadoActual;
     // Start is called before the first frame update
