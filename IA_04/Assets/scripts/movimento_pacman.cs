@@ -23,12 +23,24 @@ public class movimento_pacman : MonoBehaviour
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
-            transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+            transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
 
-        
+
 
     }
     private void FixedUpdate()
