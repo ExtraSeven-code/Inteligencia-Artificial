@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class controlador_vida : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class controlador_vida : MonoBehaviour
         if (vida_pacman <= 0)
         {
             Destroy(gameObject);
+            SceneManager.LoadScene("menu");
         }
     }
     IEnumerator tiempo_invulnerable()

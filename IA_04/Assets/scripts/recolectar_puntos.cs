@@ -24,6 +24,7 @@ public class recolectar_puntos : MonoBehaviour
             puntos += 1 ;
             Debug.Log("punto obtenido");
             Destroy(other.gameObject);
+            PlayerPrefs.SetString("puntaje", puntos.ToString());
         }
     }
 
