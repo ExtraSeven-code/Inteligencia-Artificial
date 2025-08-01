@@ -7,6 +7,7 @@ using TMPro;
 public class controlador_menu : MonoBehaviour
 {
     public TextMeshProUGUI texto_score;
+    public TextMeshProUGUI mejor_score;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +30,17 @@ public class controlador_menu : MonoBehaviour
     }
     public void score()
     {
-        string puntaje = PlayerPrefs.GetString("puntaje", "");
+        int puntaje = PlayerPrefs.GetInt("puntaje" );
+        int mejor_puntaje = PlayerPrefs.GetInt("mejor_puntaje");
+        
         texto_score.text = "SCORE: " + puntaje;
+        if(puntaje > mejor_puntaje)
+        {
+            mejor_puntaje = puntaje;
+            PlayerPrefs.SetInt("mejor_puntaje", mejor_puntaje); 
+            PlayerPrefs.Save();
+            
+        }
+        mejor_score.text = "BEST SCORE: " + mejor_puntaje;
     }
 }

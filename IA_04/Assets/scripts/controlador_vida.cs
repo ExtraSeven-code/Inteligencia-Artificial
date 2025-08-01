@@ -30,7 +30,7 @@ public class controlador_vida : MonoBehaviour
         }
         if (vida_pacman <= 0)
         {
-            Destroy(gameObject);
+            
             SceneManager.LoadScene("menu");
         }
     }
