@@ -6,10 +6,11 @@ using UnityEngine;
 public class recolectar_puntos : MonoBehaviour
 {
     public int puntos;
+    private Controlador_sonido controlador_sonido;
     // Start is called before the first frame update
     void Start()
     {
-        
+        controlador_sonido = FindObjectOfType<Controlador_sonido>();
     }
 
     // Update is called once per frame
@@ -21,6 +22,7 @@ public class recolectar_puntos : MonoBehaviour
     {
         if (other.gameObject.CompareTag("puntos"))
         {
+            controlador_sonido.seleccionar_audio(1, 1);
             puntos += 1 ;
             Debug.Log("punto obtenido");
             Destroy(other.gameObject);
