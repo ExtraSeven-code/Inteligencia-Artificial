@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class player_movimiento : MonoBehaviour
@@ -11,6 +12,8 @@ public class player_movimiento : MonoBehaviour
 
     public float playerspeed;
     private Vector3 playermovimiento;
+    public float gravity = 9.8f;
+    public float fallvelocity;
 
     public Camera mainCamara;
     private Vector3 mirar_adelante;
@@ -34,9 +37,12 @@ public class player_movimiento : MonoBehaviour
         direccion_camara();
 
         playermovimiento = playerinput.x * mirar_derecha + playerinput.z * mirar_adelante;
+        playermovimiento = playermovimiento * playerspeed;
         characterController.transform.LookAt(characterController.transform.position + playermovimiento);
 
-        characterController.Move(playermovimiento * playerspeed * Time.deltaTime);
+        gravedad();
+
+        characterController.Move(playermovimiento * Time.deltaTime);
 
     }
 
@@ -50,5 +56,20 @@ public class player_movimiento : MonoBehaviour
 
         mirar_adelante = mirar_adelante.normalized;
         mirar_derecha = mirar_derecha.normalized;
+    }
+
+    public void gravedad()
+    {
+        if (characterController.isGrounded)
+        {
+            fallvelocity = -gravity * Time.deltaTime;
+            playermovimiento.y = fallvelocity;
+        }
+        else
+        {
+            fallvelocity -= gravity * Time.deltaTime;
+            playermovimiento.y = fallvelocity;
+        }
+
     }
 }
