@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class player_movimiento : MonoBehaviour
 {
+    public atributos_player atributo;
     public float vertical_movimiento;
     public float horizontal_movimiento;
     public CharacterController characterController;
@@ -23,6 +24,7 @@ public class player_movimiento : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        
     }
 
     // Update is called once per frame
@@ -37,7 +39,7 @@ public class player_movimiento : MonoBehaviour
         direccion_camara();
 
         playermovimiento = playerinput.x * mirar_derecha + playerinput.z * mirar_adelante;
-        playermovimiento = playermovimiento * playerspeed;
+        playermovimiento = playermovimiento * atributo.velocidad;
         characterController.transform.LookAt(characterController.transform.position + playermovimiento);
 
         gravedad();
