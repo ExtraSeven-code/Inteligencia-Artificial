@@ -4,58 +4,55 @@ using UnityEngine;
 
 public class rango_ataque_depredador : MonoBehaviour
 {
+    public atributos_player atributos_Player;
     public bool depredador_puede_atacar = false;
-    public float tiempo_ataque;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        atacar();
-    }
+    public float intervalo_ataque = 2f;
+    private Coroutine rutinaAtaque;
+    public int daño;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             Debug.Log("te pueden atacar");
             depredador_puede_atacar = true;
-            
 
-        }
-    }
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            tiempo_ataque -= 1 * Time.deltaTime;
-            if (tiempo_ataque < 0)
+            if (rutinaAtaque == null) 
             {
-                tiempo_ataque = 2;
+                rutinaAtaque = StartCoroutine(Tons());
             }
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             Debug.Log("ya no te pueden atacar");
-            depredador_puede_atacar=false;
-            tiempo_ataque = 2;
+            depredador_puede_atacar = false;
+
+            if (rutinaAtaque != null)
+            {
+                StopCoroutine(rutinaAtaque);
+                rutinaAtaque = null;
+            }
         }
     }
 
-    public void atacar()
+    private IEnumerator Tons()
     {
-        if(tiempo_ataque == 0 && depredador_puede_atacar)
+        while (depredador_puede_atacar)
         {
-            Debug.Log("atacar");
+            atacar();
+            yield return new WaitForSeconds(intervalo_ataque);
         }
+    }
+
+    private void atacar()
+    {
+        atributos_Player.vida -= daño;
+        Debug.Log("ataque");
+        
     }
 
 }

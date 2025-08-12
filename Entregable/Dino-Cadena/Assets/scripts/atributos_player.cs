@@ -10,6 +10,9 @@ public class atributos_player : MonoBehaviour
     public float velocidad;
     public int daño;
 
+    public float sed;
+    public float hambre;
+
 
     // Start is called before the first frame update
     void Start()
