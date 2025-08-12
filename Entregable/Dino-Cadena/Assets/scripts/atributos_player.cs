@@ -27,5 +27,6 @@ public class atributos_player : MonoBehaviour
         {
             vida = 100;
         }
+
     }
 }
