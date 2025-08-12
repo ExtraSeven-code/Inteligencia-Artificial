@@ -7,6 +7,7 @@ public class controlador_vida : MonoBehaviour
     public atributos_player atributo;
     public float tiempo_daño_hambre_sed;
     public int daño_segundo;
+    public int tiempo_bajar_sed_hambre;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +47,7 @@ public class controlador_vida : MonoBehaviour
     {
         while (true)
         {
+            yield return new WaitForSeconds(tiempo_bajar_sed_hambre);
             bajar_hambre_sed();
         }
     }

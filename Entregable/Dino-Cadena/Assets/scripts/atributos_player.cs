@@ -23,6 +23,9 @@ public class atributos_player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(vida >= 100)
+        {
+            vida = 100;
+        }
     }
 }
