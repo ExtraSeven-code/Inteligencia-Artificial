@@ -27,6 +27,10 @@ public class atributos_player : MonoBehaviour
         {
             vida = 100;
         }
+        if (vida <= 0)
+        {
+            Destroy(gameObject);
+        }
 
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class rango_ataque_depredador : MonoBehaviour
 {
+    public MeshRenderer estado;
+    public Color estado_color;
     public atributos_player atributos_Player;
     public bool depredador_puede_atacar = false;
     public float intervalo_ataque = 2f;
@@ -16,7 +18,7 @@ public class rango_ataque_depredador : MonoBehaviour
         {
             Debug.Log("te pueden atacar");
             depredador_puede_atacar = true;
-
+            estado.material.color = estado_color;
             if (rutinaAtaque == null) 
             {
                 rutinaAtaque = StartCoroutine(Tons());
@@ -30,6 +32,7 @@ public class rango_ataque_depredador : MonoBehaviour
         {
             Debug.Log("ya no te pueden atacar");
             depredador_puede_atacar = false;
+            estado.material.color = Color.white;
 
             if (rutinaAtaque != null)
             {
@@ -43,8 +46,8 @@ public class rango_ataque_depredador : MonoBehaviour
     {
         while (depredador_puede_atacar)
         {
-            atacar();
             yield return new WaitForSeconds(intervalo_ataque);
+            atacar();
         }
     }
 
